@@ -1,0 +1,25 @@
+{
+  "name": "walk/blog-demo",
+  "description": "Blog demo",
+  "authors": [
+    {
+      "name": "WalkWeb",
+      "email": "av18775@list.ru"
+    }
+  ],
+  "require": {
+    "ext-mysqli": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Poral\\": "src/Portal/",
+      "Framework\\": "src/NWFramework",
+      "Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.4"
+  }
+}
