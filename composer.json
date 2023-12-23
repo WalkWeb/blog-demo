@@ -14,8 +14,9 @@
   },
   "autoload": {
     "psr-4": {
+      "Controllers\\": "Controllers",
       "Poral\\": "src/Portal/",
-      "Framework\\": "src/NWFramework",
+      "NW\\": "src/NWFramework",
       "Tests\\": "tests/"
     }
   },
