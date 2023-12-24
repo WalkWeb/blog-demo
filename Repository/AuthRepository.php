@@ -56,7 +56,7 @@ class AuthRepository
             JOIN `account_energy` ON `accounts`.`energy_id` = `account_energy`.`id`
 
             WHERE `accounts`.`hash` = ?',
-            [['type' => 'i', 'value' => (string)Cookie::getCookie('hash')]],
+            [['type' => 's', 'value' => (string)Cookie::getCookie('hash')]],
             true
         );
 

@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace Migrations;
 
+use NW\AppException;
 use NW\Connection;
 
 class Version_2023_12_23_21_32_25_28
 {
+    /**
+     * @param Connection $connection
+     * @throws AppException
+     */
     public function run(Connection $connection): void
     {
         $connection->query('

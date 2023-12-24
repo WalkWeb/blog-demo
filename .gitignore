@@ -9,3 +9,4 @@ src/NWFramework
 src/Portal
 
 config.local.php
+config.test.php
