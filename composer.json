@@ -15,8 +15,9 @@
   "autoload": {
     "psr-4": {
       "Controllers\\": "Controllers",
+      "Repository\\": "Repository",
       "Migrations\\": "migrations",
-      "Poral\\": "src/Portal/",
+      "Portal\\": "src/Portal/",
       "NW\\": "src/NWFramework",
       "Tests\\": "tests/"
     }

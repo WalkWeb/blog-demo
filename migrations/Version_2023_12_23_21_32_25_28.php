@@ -78,9 +78,9 @@ class Version_2023_12_23_21_32_25_28
 
         $connection->query('
             CREATE TABLE `account_energy` (
-              `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+              `id` VARCHAR(36) NOT NULL PRIMARY KEY,
               `energy` SMALLINT UNSIGNED NOT NULL DEFAULT 100,
-              `time` DECIMAL(20,4) NOT NULL,
+              `updated_at` DECIMAL(20,4) NOT NULL,
               `residue` TINYINT UNSIGNED NOT NULL DEFAULT 0
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
         ');
@@ -105,7 +105,7 @@ class Version_2023_12_23_21_32_25_28
         $connection->query('
             CREATE TABLE `chat_status_account` (
               `id` TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-              `status` VARCHAR(50) NOT NULL, # Название статуса 1 - Доступен, 2 - Только чтение, 3 - Доступ к чату закрыт, 4 - Модератор
+              `status` VARCHAR(50) NOT NULL,   # Название статуса 1 - Доступен, 2 - Только чтение, 3 - Доступ к чату закрыт, 4 - Модератор
               `channel_id` TINYINT UNSIGNED,   # Если статус модератора (4) - то здесь указывается номер канала, к которому даны модераторские права
               FOREIGN KEY (`channel_id`) REFERENCES `chat_channel`(`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -126,7 +126,7 @@ class Version_2023_12_23_21_32_25_28
               `status_id`      TINYINT UNSIGNED NOT NULL DEFAULT 1,         # id статуса
               `group_id`       TINYINT UNSIGNED NOT NULL DEFAULT 1,         # id группы
               `char_visible`   TINYINT UNSIGNED NOT NULL DEFAULT 1,         # Видимость персонажей аккаунта. 1 - видны, 0 - скрыты
-              `energy_id`      INT UNSIGNED NOT NULL,                       # id записи в таблице `energy`
+              `energy_id`      VARCHAR(36) NOT NULL,                        # id записи в таблице `energy`
               `char_active_id` INT UNSIGNED,                                # id активного (выбранного) персонажа
               `chat_status_id` TINYINT UNSIGNED NOT NULL DEFAULT 1,         # id статуса аккаунта в чате
               `upload`         INT UNSIGNED NOT NULL DEFAULT 0,             # суммарный вес файлов, загруженных пользователем
