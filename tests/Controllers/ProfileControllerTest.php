@@ -41,4 +41,20 @@ class ProfileControllerTest extends AbstractUnitTest
         self::assertEquals(302, $response->getStatusCode());
         self::assertEquals(['Location' => '/'], $response->getHeaders());
     }
+
+    /**
+     * @throws Exception
+     */
+    public function testProfileFormLogin(): void
+    {
+        $request = $this->createRequest('/login', 'GET', 'unknown_hash');
+        $app = $this->createApp();
+
+        $response = $app->handle($request);
+
+        self::assertEquals(200, $response->getStatusCode());
+        self::assertStringContainsString('Авторизация', $response->getBody());
+        self::assertStringContainsString('Логин', $response->getBody());
+        self::assertStringContainsString('Пароль', $response->getBody());
+    }
 }

@@ -134,3 +134,43 @@ ul.navigation > li > a:hover {
 .pagination a:hover {
     background: #1c9450;
 }
+
+span.login_label {
+    font-family: Arial, sans-serif;
+    font-size: 130%;
+    color: #a1a1a1;
+    line-height: 130%;
+    padding: 5px;
+}
+
+.login_input {
+    margin: 0 0 0 0;
+    font-size: 140%;
+    color: #d9b569;
+}
+
+.login_submit {
+    font-size: 15px;
+}
+
+.input_submit {
+    text-decoration: none;
+    border: 1px solid #1A120D;
+    padding: 4px 10px;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 0 #6C4930 inset, 0 2px 3px rgba(0, 0, 0, 0.2);
+    font: 120% Verdana, sans-serif;
+}
+
+.input_submit:hover {
+    cursor: pointer;
+    color: #EFC377;
+}
+
+.input_submit[disabled] {
+    color: #888888;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    filter: alpha(opacity=50);
+    cursor: default;
+}

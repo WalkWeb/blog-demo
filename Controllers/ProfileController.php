@@ -23,4 +23,17 @@ class ProfileController extends AbstractController
 
         return $this->render('profile', ['auth' => $auth]);
     }
+
+    /**
+     * @return Response
+     * @throws Exception
+     */
+    public function formLogin(): Response
+    {
+        if ($auth = AuthRepository::getAuth()) {
+            return $this->redirect('/');
+        }
+
+        return $this->render('login');
+    }
 }

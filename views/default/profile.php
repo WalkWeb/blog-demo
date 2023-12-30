@@ -12,7 +12,7 @@ if ($auth === null) {
 
 ?>
 
-<h1><?= htmlspecialchars($this->title) ?></h1>
+<h1><?= $this->title ?></h1>
 
 <p><b>ID</b>: <?= $auth->getId() ?><br />
 <b>Имя</b>: <?= $auth->getName() ?><br />
