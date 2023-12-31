@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Repository;
 
 use Exception;
+use NW\AppException;
 use NW\Connection;
 use NW\Cookie;
+use NW\Request\Request;
 use Portal\Account\Energy\EnergyFactory;
 use Portal\Account\Notice\NoticeFactory;
 use Portal\Auth\AuthFactory;
@@ -82,5 +84,47 @@ class AuthRepository
         ];
 
         return $authFactory->create($data);
+    }
+
+    /**
+     * @param Request $request
+     * @throws AppException
+     */
+    public static function login(Request $request): void
+    {
+        $body = $request->getBody();
+
+        if (empty($body['login'])) {
+            throw new AppException('Не указан логин');
+        }
+
+        if (empty($body['pass'])) {
+            throw new AppException('Не указан пароль');
+        }
+
+        $connection = Connection::getInstance();
+
+        $user = $connection->query(
+            'SELECT `id`, `pass`, `hash`, `status_id` FROM `accounts` WHERE `login` = ?',
+            [
+                ['type' => 's', 'value' => $body['login']],
+            ],
+            true
+        );
+
+        if (!$user) {
+            // TODO Ошибку можно заменить на 'Логин и/или пароль не верны', чтобы нельзя было пробивать существование логинов
+            throw new AppException('Указан неизвестный логин');
+        }
+
+        if (!password_verify($body['pass'] . PASS_KEY, $user['pass'])) {
+            throw new AppException('Логин и/или пароль не верны');
+        }
+
+        if ($user['status_id'] === 2) {
+            throw new AppException('Аккаунт заблокирован');
+        }
+
+        Cookie::setCookie('hash', $user['hash'], time() + 31104000);
     }
 }

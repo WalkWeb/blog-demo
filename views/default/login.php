@@ -7,6 +7,12 @@ $url = '/login';
 
 <h1><?= $this->title ?></h1>
 
+<?php
+if (!empty($message)) {
+    echo "<p>$message</p>";
+}
+?>
+
 <div class="login_container">
     <form method="POST" action="<?= $url ?>">
         <label>

@@ -19,13 +19,13 @@ abstract class AbstractUnitTest extends TestCase
         return new App($router);
     }
 
-    protected function createRequest(string $uri, string $method, string $hash = ''): Request
+    protected function createRequest(string $uri, string $method, string $hash = '', array $body = []): Request
     {
         // TODO Временный костыль из-за старого класса Cookie
         if ($hash) {
             $_COOKIE['hash'] = $hash;
         }
 
-        return new Request(['REQUEST_URI' => $uri, 'REQUEST_METHOD' => $method], [], $_COOKIE);
+        return new Request(['REQUEST_URI' => $uri, 'REQUEST_METHOD' => $method], $body, $_COOKIE);
     }
 }

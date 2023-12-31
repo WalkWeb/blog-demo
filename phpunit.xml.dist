@@ -12,7 +12,8 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">./src/</directory>
+            <directory suffix=".php">./Controllers/</directory>
+            <directory suffix=".php">./Repository/</directory>
         </whitelist>
     </filter>
 </phpunit>
